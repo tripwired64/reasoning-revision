@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#222d6d">
+  <title>Kent Test Practice</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23222d6d'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-weight='700' font-size='34' fill='%23fff' text-anchor='middle'%3EKT%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <button id="back-btn" class="back hidden" type="button" aria-label="Back to home">
+        <!-- Lucide "circle-arrow-left" -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/><path d="M16 12H8"/><path d="m12 8-4 4 4 4"/>
+        </svg>
+      </button>
+      <h1 id="page-title">Kent Test Practice</h1>
+    </div>
+  </header>
+
+  <!-- Home: choose a question type -->
+  <main id="view-home" class="view">
+    <p class="intro">Pick a question type. Each one gives you a question, tells you straight away if you were right, and shows you how to work it out.</p>
+
+    <nav class="types" aria-label="Question types">
+      <button type="button" class="type-btn active" data-panel="alphabet">
+        <span class="type-name">Alphabet Codes</span>
+        <span class="type-sub">Verbal 3</span>
+      </button>
+      <button type="button" class="type-btn" data-panel="oddtwo">
+        <span class="type-name">Odd Two Out</span>
+        <span class="type-sub">Verbal 4</span>
+      </button>
+      <button type="button" class="type-btn" data-panel="compound">
+        <span class="type-name">Compound Words</span>
+        <span class="type-sub">Verbal 2</span>
+      </button>
+      <button type="button" class="type-btn" data-panel="oneletter">
+        <span class="type-name">One Letter, Four Words</span>
+        <span class="type-sub">Verbal 1</span>
+      </button>
+      <button type="button" class="type-btn" data-panel="nvrseq">
+        <span class="type-name">Shape Sequences</span>
+        <span class="type-sub">Non-verbal 2</span>
+      </button>
+      <button type="button" class="type-btn" data-panel="nvrtrans">
+        <span class="type-name">Shape Transformations</span>
+        <span class="type-sub">Non-verbal 3</span>
+      </button>
+      <button type="button" class="type-btn drill" data-panel="drill">
+        <span class="type-name">Timed drill</span>
+        <span class="type-sub">10 mixed questions, 30s each</span>
+      </button>
+    </nav>
+
+    <section class="card panel" data-panel="alphabet">
+      <h2>Alphabet Codes</h2>
+      <p class="muted">Find the next pair of letters in the sequence.</p>
+
+      <div class="field">
+        <span class="label">Difficulty</span>
+        <div class="segmented" role="group" aria-label="Difficulty">
+          <button type="button" data-diff="easy">Easy</button>
+          <button type="button" data-diff="mixed" class="active">Mixed</button>
+          <button type="button" data-diff="hard">Hard</button>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button type="button" class="btn primary" data-type="alphabet" data-start="generated">Start practising</button>
+      </div>
+
+      <div class="howto">
+        <h3>How to do them</h3>
+        <ol>
+          <li>Look at the <strong>first letters only</strong>. Count the jump between each one on the alphabet strip. Write the jumps down: +2, +2, +2.</li>
+          <li>Do the same for the <strong>second letters only</strong>. The two rows usually follow different rules.</li>
+          <li>Spot the rule: same jump every time, jumps getting bigger, jumps taking turns, or letters repeated in pairs.</li>
+          <li>Apply the next jump to the last letter. If you run off the end, <strong>carry on from A</strong> (or back round to Z).</li>
+          <li>Never leave one blank. If you're stuck, find the option whose first letter fits and pick that.</li>
+        </ol>
+      </div>
+
+      <p class="stats muted" data-stats="alphabet"></p>
+    </section>
+
+    <section class="card panel hidden" data-panel="oddtwo">
+      <h2>Odd Two Out</h2>
+      <p class="muted">Five words, three go together. Find the two that don't. "Tricky ones" are the questions with a trap: a word with two meanings, or five words that share a topic but not a group.</p>
+
+      <div class="field">
+        <span class="label">Questions</span>
+        <div class="segmented" role="group" aria-label="Which questions" data-type="oddtwo">
+          <button type="button" data-filter="all" class="active">All</button>
+          <button type="button" data-filter="tricky">Tricky ones only</button>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button type="button" class="btn primary" data-type="oddtwo" data-start="generated">Start practising</button>
+      </div>
+
+      <div class="howto">
+        <h3>How to do them</h3>
+        <ol>
+          <li>Find the <strong>three</strong> first, not the two. Look for three words that mean the same thing or are the same kind of thing.</li>
+          <li><strong>Same topic is not the same as same group.</strong> Cost, fee and price are all amounts you pay. Money and change are about money, but they are not amounts you pay.</li>
+          <li>Watch for words with two meanings: <strong>second</strong> (time, not position), <strong>address</strong> (a speech), <strong>minute</strong> (tiny), <strong>crisp</strong> (cold).</li>
+          <li>If two words obviously pair up, check the other three share something too. If they don't, the pair might be part of the three.</li>
+          <li>Never leave one blank. Pick the two that feel least like the others.</li>
+        </ol>
+      </div>
+
+      <p class="stats muted" data-stats="oddtwo"></p>
+    </section>
+
+    <section class="card panel hidden" data-panel="compound">
+      <h2>Compound Words</h2>
+      <p class="muted">Two groups of three words. One from each group joins to make one word. "Tricky ones" are the questions where the sound changes when the halves join, or the halves are not words on their own.</p>
+
+      <div class="field">
+        <span class="label">Questions</span>
+        <div class="segmented" role="group" aria-label="Which questions" data-type="compound">
+          <button type="button" data-filter="all" class="active">All</button>
+          <button type="button" data-filter="tricky">Tricky ones only</button>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button type="button" class="btn primary" data-type="compound" data-start="generated">Start practising</button>
+      </div>
+
+      <div class="howto">
+        <h3>How to do them</h3>
+        <ol>
+          <li>Take the first word of group one and say it in front of <strong>all three</strong> words in group two. Then the second word. Then the third. Nine tries at most.</li>
+          <li>The word from the <strong>first group always comes first</strong>. Topcat is not allowed if "top" is in the second group.</li>
+          <li>Do not trust the sound. Dam + age is "damage", plea + sure is "pleasure". Look at the spelling.</li>
+          <li>Bits that are not words on their own (prim, ish, ket) must be half of something. Start with those.</li>
+          <li>Try the tiny words too: so + on, for + get.</li>
+        </ol>
+      </div>
+
+      <p class="stats muted" data-stats="compound"></p>
+    </section>
+
+    <section class="card panel hidden" data-panel="oneletter">
+      <h2>One Letter, Four Words</h2>
+      <p class="muted">The same letter finishes one word and starts the next, in both pairs.</p>
+
+      <div class="actions">
+        <button type="button" class="btn primary" data-type="oneletter" data-start="generated">Start practising</button>
+      </div>
+
+      <div class="howto">
+        <h3>How to do them</h3>
+        <ol>
+          <li>Work on the <strong>first pair only</strong>. Which of the five letters finishes the first word? Often two or three will.</li>
+          <li>For each of those, check it also starts the second word of that pair.</li>
+          <li>Now test what is left on the <strong>second pair</strong>. Only one letter survives all four words.</li>
+          <li>The trap is a letter that makes three good words and one made-up one. Check all four every time.</li>
+          <li>Never leave one blank. If two letters seem to work, pick the one that makes the more ordinary words.</li>
+        </ol>
+      </div>
+
+      <p class="stats muted" data-stats="oneletter"></p>
+    </section>
+
+    <section class="card panel hidden" data-panel="nvrseq">
+      <h2>Shape Sequences</h2>
+      <p class="muted">Five frames in a row, one missing. One or two things change by a rule. Find the frame that fits.</p>
+
+      <div class="actions">
+        <button type="button" class="btn primary" data-type="nvrseq" data-start="generated">Start practising</button>
+      </div>
+
+      <div class="howto">
+        <h3>How to do them</h3>
+        <ol>
+          <li>Do not look at the whole picture. Pick <strong>one thing</strong> (the shape, the fill, the dots, the black square, which way it points) and follow it along the row.</li>
+          <li>Ask what it does each step: stays the same, alternates, cycles round, goes up by one, turns, or moves round the corners.</li>
+          <li>Then pick the next thing and do the same. Usually only <strong>one or two</strong> things change.</li>
+          <li>Work out what the missing frame must be for each rule, then find the option that matches <strong>all</strong> of them and changes nothing else.</li>
+          <li>Wrong options are usually right on one rule and wrong on another. Check every rule against your pick.</li>
+        </ol>
+      </div>
+
+      <p class="stats muted" data-stats="nvrseq"></p>
+    </section>
+
+    <section class="card panel hidden" data-panel="nvrtrans">
+      <h2>Shape Transformations</h2>
+      <p class="muted">The first shape changes into the second. Do the same change to the third shape.</p>
+
+      <div class="actions">
+        <button type="button" class="btn primary" data-type="nvrtrans" data-start="generated">Start practising</button>
+      </div>
+
+      <div class="howto">
+        <h3>How to do them</h3>
+        <ol>
+          <li>Say out loud what changed from the first picture to the second. Be exact: "turns a quarter turn clockwise", "white goes black", "one more dot", "flips left to right".</li>
+          <li>Check what did <strong>not</strong> change too. The size and the shape usually stay the same.</li>
+          <li>Now imagine doing exactly that to the third picture. Picture the result before looking at the options.</li>
+          <li>Find your imagined picture among the options. If two look close, check the direction of the turn and the corner the small square is in.</li>
+          <li>A common trap is the second picture itself appearing as an option. The answer must be built from the <strong>third</strong> shape.</li>
+        </ol>
+      </div>
+
+      <p class="stats muted" data-stats="nvrtrans"></p>
+    </section>
+
+    <section class="card panel hidden" data-panel="drill">
+      <h2>Timed drill</h2>
+      <p class="muted">Ten questions mixed from every type, verbal and non-verbal. Thirty seconds each, counting down. When it hits zero the question is marked and you move on, so <strong>always put an answer down</strong>. No hints.</p>
+
+      <div class="actions">
+        <button type="button" class="btn primary" data-start="drill">Start a 10-question drill</button>
+      </div>
+
+      <div class="howto">
+        <h3>Why this matters</h3>
+        <ol>
+          <li>A blank scores nothing. A guess scores one in five. Questions left unanswered are the easiest marks to lose.</li>
+          <li>Thirty seconds a question is the pace the real test needs. If you are not sure at 10 seconds left, pick your best guess and move on.</li>
+          <li>You do not lose marks for wrong answers, so there is never a reason to leave one empty.</li>
+        </ol>
+      </div>
+
+      <p class="stats muted" data-stats="drill"></p>
+    </section>
+  </main>
+
+  <!-- Practice view -->
+  <main id="view-practice" class="view hidden">
+    <div class="status">
+      <span id="score">0 / 0</span>
+      <span id="qlabel" class="muted"></span>
+      <span id="timer" class="timer">0s</span>
+    </div>
+
+    <!-- Each question type draws itself here -->
+    <div id="stage"></div>
+
+    <div id="feedback" class="feedback hidden">
+      <p id="verdict" class="verdict"></p>
+      <div id="explanation" class="explanation"></div>
+      <button id="next-btn" type="button" class="btn primary wide">Next question</button>
+    </div>
+  </main>
+
+  <script src="js/alphabet.js"></script>
+  <script src="js/oddtwoout.js"></script>
+  <script src="js/compound.js"></script>
+  <script src="js/oneletter.js"></script>
+  <script src="js/shapes.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
